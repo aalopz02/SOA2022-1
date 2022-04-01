@@ -4,7 +4,12 @@ pipeline {
 		stage('check') {
             steps {
                 sh 'pylint cosa.py --disable=all --enable=E,W,C0116 --reports=no module --output-format=parseable > pylint.log'
-				if (echo | python3 logParser.py >= 8){
+				LINT_RESULT = sh(
+					script:'echo | python3 logParser.py'
+					returnStdout: true
+				).trim()
+				echo "lintRes: ${LINT_RESULT}"
+				if (LINT_RESULT >= 8){
 					echo 'ok'
 				} else {
 					echo 'fail'

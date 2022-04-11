@@ -15,7 +15,7 @@ def doLint(){
 }
 
 def doTests(){
-	def testResult = sh ( script: "cd Proyecto1/AndresA/Project && echo | python3 runTests.py",
+	def testResult = sh ( script: "export GOOGLE_APPLICATION_CREDENTIALS=Proyecto1/AndresA/Project/key.json && cd Proyecto1/AndresA/Project && echo | python3 runTests.py",
 			returnStdout: true
 			).trim()
 	echo "Testing results: ${testResult}"
@@ -43,6 +43,13 @@ pipeline {
 				}
             }
         }
+		stage ('setUp'){
+			steps{
+				script {
+					sh "python3 -m pip install google-cloud-vision"
+				}
+			}
+		}
 		stage ('tests'){
 			steps{
 				script {
@@ -57,7 +64,6 @@ pipeline {
 							sh 'exit 1'
 						}
 					}
-					
 				}
 			}
 		}

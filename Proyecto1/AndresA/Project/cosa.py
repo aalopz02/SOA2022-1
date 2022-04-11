@@ -1,5 +1,5 @@
-a = 0
+a = p
 def cosa(x):
-    print(x)
+    print(perro)
 
-print(a)
+print(x)

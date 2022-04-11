@@ -46,8 +46,11 @@ def getImpl(mode):
                     assert resultsTotal[i]["anger"] == testLabels[i]["anger"]
         return test()
     else:
-        pass
-
+        class scriptImpl(interface):
+            def setImg(self,imgUrl=0):
+                pass
+            def doDetect(self):
+                pass
 
 def main(mode = 'r',imgB64 = 0):
     run = 0

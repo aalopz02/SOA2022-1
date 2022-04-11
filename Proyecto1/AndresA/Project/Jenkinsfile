@@ -22,18 +22,26 @@ pipeline {
             steps {
 				script {
 					score = doLint()
-					sh (script:"rm Proyecto1/AndresA/Project/pylint.log")
 					if (score >= 7){
-						echo 'ok'
+						echo 'lint ok'
+						sh (script:"rm Proyecto1/AndresA/Project/pylint.log")
+						if (env.CHANGE_ID) {
+							pullRequest.comment("Lint ok, got score of: ${score}")
+						}
 					} else {
-						error 'score of: ${score}, less than 7'
-					}
-					
+						if (env.CHANGE_ID) {
+							pullRequest.comment("Lint failed, got score of: ${score}. Check log for details")
+						}
+						echo "Lint failed, got score of: ${score}. Check log for details"
+						sh "exit 1"
+					}//https://levelup.gitconnected.com/perfect-pr-process-on-github-with-jenkins-ci-multi-branch-pipeline-and-autostatus-plugin-33e1805dc619
+					//https://plugins.jenkins.io/scm-filter-branch-pr/
+					//https://devopscube.com/jenkins-build-trigger-github-pull-request/
 				}
             }
         }
 		stage ('tests'){
-			step{
+			steps{
 				echo 'CHANGE_ID: ' + env.CHANGE_ID
 			}
 		}

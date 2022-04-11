@@ -15,7 +15,7 @@ def doLint(){
 }
 
 def doTests(){
-	def testResult = sh ( script: "cd Proyecto1/AndresA/Project && echo | python3 logParser.py",
+	def testResult = sh ( script: "cd Proyecto1/AndresA/Project && echo | python3 runTests.py",
 			returnStdout: true
 			).trim()
 	echo "Testing results: ${testResult}"

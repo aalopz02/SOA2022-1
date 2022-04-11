@@ -7,9 +7,7 @@ import subprocess
 
 import sys
 
-uri_base = ('alooo','eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
-pic = ('face_surprise.jpg')
-
+uri_base = ('eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
 
 def ping(host):
     param = '-n' if platform.system().lower()=='windows' else '-c'

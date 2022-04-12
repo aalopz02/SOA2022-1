@@ -47,7 +47,6 @@ pipeline {
 			steps{
 				script {
 					sh "python3 -m pip install google-cloud-vision"
-					sh " gcloud auth activate-service-account visionapi@my-project-1535378363990.iam.gserviceaccount.com --key-file=/home/aalopz/sharedFolder/key.json"
 				}
 			}
 		}

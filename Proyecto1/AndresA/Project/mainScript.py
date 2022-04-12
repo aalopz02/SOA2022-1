@@ -6,8 +6,11 @@ import platform
 import subprocess 
 
 import sys
+import os
 
-uri_base = ('eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
+uri_base = ('alooo','eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
+pic = ('face_surprise.jpg')
+
 
 def ping(host):
     param = '-n' if platform.system().lower()=='windows' else '-c'
@@ -44,15 +47,12 @@ def getImpl(mode):
                     assert resultsTotal[i]["anger"] == testLabels[i]["anger"]
         return test()
     else:
-        class scriptImpl(interface):
-            def setImg(self,imgUrl=0):
-                pass
-            def doDetect(self):
-                pass
+        pass
+
 
 def main(mode = 'r',imgB64 = 0):
+    os.system('gcloud auth activate-service-account visionapi@my-project-1535378363990.iam.gserviceaccount.com --key-file=/home/aalopz/sharedFolder/key.json')
     run = 0
     run = getImpl(mode)
     run.setImg()
     run.doDetect()
-

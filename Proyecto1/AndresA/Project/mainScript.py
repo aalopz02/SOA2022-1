@@ -17,7 +17,8 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=keyPath
 def ping(host):
     param = '-n' if platform.system().lower()=='windows' else '-c'
     command = ['ping', param, '1', host]
-    return subprocess.call(command) == 0
+    x = subprocess.call(command) == 0
+    return x == 0
 
 class interface():
     def setImg(self,imgUrl=0):

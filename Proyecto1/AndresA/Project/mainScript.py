@@ -51,7 +51,7 @@ def getImpl(mode):
 
 
 def main(mode = 'r',imgB64 = 0):
-    os.system('gcloud auth activate-service-account visionapi@my-project-1535378363990.iam.gserviceaccount.com --key-file=/home/aalopz/sharedFolder/key.json')
+    ##os.system('gcloud auth activate-service-account visionapi@my-project-1535378363990.iam.gserviceaccount.com --key-file=/home/aalopz/sharedFolder/key.json')
     run = 0
     run = getImpl(mode)
     run.setImg()

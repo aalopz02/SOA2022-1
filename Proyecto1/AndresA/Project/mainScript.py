@@ -8,7 +8,7 @@ import subprocess
 import sys
 import os
 
-uri_base = ('alooo','eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
+uri_base = ('eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
 pic = ('face_surprise.jpg')
 
 

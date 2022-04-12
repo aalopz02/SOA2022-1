@@ -12,6 +12,8 @@ uri_base = ('eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifac
 pic = ('face_surprise.jpg')
 keyPath = '/home/aalopz/sharedFolder/key.json'
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=keyPath
+
 def ping(host):
     param = '-n' if platform.system().lower()=='windows' else '-c'
     command = ['ping', param, '1', host]

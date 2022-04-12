@@ -2,6 +2,10 @@ from mainScript import main
 
 import sys
 import traceback
+import os
+
+keyPath = '/home/aalopz/sharedFolder/key.json'
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=keyPath
 
 try:
     main(mode="t")

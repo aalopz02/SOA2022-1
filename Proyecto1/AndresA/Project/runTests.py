@@ -1,4 +1,4 @@
-from cloud_function.main import main
+from cloud_function.main import main,execute
 
 import sys
 import traceback

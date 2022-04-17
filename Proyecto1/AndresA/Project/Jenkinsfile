@@ -70,14 +70,14 @@ pipeline {
 		stage ('plan'){
 			steps{
 				script{
-					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform init -input=false && terraform plan -out=tfplan -input=false")
+					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform init -input=false && terraform destroy -input=false -auto-approve &&terraform plan -out=tfplan -input=false")
 				}
 			}
 		}
 		stage ('build'){
 			steps{
 				script{
-					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform apply -input=false tfplan -auto-approve")
+					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform apply -input=false -auto-approve tfplan")
 				}
 			}
 		}

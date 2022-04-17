@@ -8,7 +8,7 @@ keyPath = '/home/aalopz/sharedFolder/key.json'
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=keyPath
 
 try:
-    main(mode="t")
+    execute(mode="t")
     print("0")
 except AssertionError:
     _, _, tb = sys.exc_info()

@@ -70,8 +70,7 @@ pipeline {
 		stage ('plan'){
 			steps{
 				script{
-					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform destroy")
-					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform init && terraform apply")
+					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform init && terraform destroy && terraform apply")
 				}
 			}
 		}

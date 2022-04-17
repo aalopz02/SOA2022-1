@@ -36,7 +36,7 @@ pipeline {
 							pullRequest.comment("Lint ok, got score of: ${score}")
 						} else {
 							pullRequest.comment("Lint failed, got score of: ${score}. Check log for details")
-							echo "Lint failed, got score of: ${score}. Check log for details"
+							echo "Lint failed, got score of: ${score}, run pylint for details"
 							sh 'exit 1'
 						}
 					}
@@ -70,7 +70,14 @@ pipeline {
 		stage ('plan'){
 			steps{
 				script{
-					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform init -input=false && terraform destroy -input=false -auto-approve && terraform plan -out=tfplan -input=false")
+					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform init -input=false && terraform plan -out=tfplan -input=false")
+				}
+			}
+		}
+		stage ('build'){
+			steps{
+				script{
+					sh (script:"cd Proyecto1/AndresA/Project/terraform && terraform apply -input=false tfplan -auto-approve")
 				}
 			}
 		}

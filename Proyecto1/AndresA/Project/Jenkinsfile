@@ -1,6 +1,6 @@
 def doLint(){
 	try {
-		sh ( script:"cd Proyecto1/AndresA/Project && pylint cloud_function/main.py --disable=all --enable=E,W,C0116 --reports=no module --output-format=parseable > pylint.log", returnStatus:true)
+		sh ( script:"cd Proyecto1/AndresA/Project && pylint terraform/main.py --disable=all --enable=E,W,C0116 --reports=no module --output-format=parseable > pylint.log", returnStatus:true)
 		echo "lint log generated"
 		def score = sh ( script: "cd Proyecto1/AndresA/Project && echo | python3 logParser.py",
 			returnStdout: true

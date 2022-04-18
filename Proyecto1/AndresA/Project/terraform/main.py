@@ -1,12 +1,10 @@
 ##visionapi@my-project-1535378363990.iam.gserviceaccount.com
 from __future__ import print_function
-from nturl2path import url2pathname
 from google.cloud import vision
 
 import platform
-import subprocess 
+import subprocess
 
-import sys
 import os
 
 import requests
@@ -16,6 +14,7 @@ pic = ('face_surprise.jpg')
 keyPath = '/home/aalopz/sharedFolder/key.json'
 
 def ping(host):
+    '''Test for connection to test bucket'''
     param = '-n' if platform.system().lower()=='windows' else '-c'
     command = ['ping', param, '1', host]
     returnObj = subprocess.call(command, stdout=open(os.devnull, 'wb'))
@@ -23,8 +22,10 @@ def ping(host):
 
 class interface():
     def setImg(self):
+        '''Interface to set the img resource'''
         pass
     def doDetect(self,ulr=0):
+        '''Call vision api'''
         pass
     
 def getImpl(mode):
@@ -69,7 +70,7 @@ def getImpl(mode):
                 url = "http://201.206.66.59:5000/listener?"
                 url += "joy="+results["joy"]
                 url += "&sorrow="+results["sorrow"]
-                url += "&anger="+esults["anger"]
+                url += "&anger="+results["anger"]
                 url += "&surprise="+results["surprise"]
                 requests.post(url)
         return realImpl()

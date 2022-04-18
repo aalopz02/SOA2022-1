@@ -5,7 +5,7 @@ import traceback
 import os
 
 keyPath = '/home/aalopz/sharedFolder/key.json'
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=keyPath
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']=keyPath
 
 try:
     execute(mode="t")

@@ -7,4 +7,9 @@ resource "google_storage_bucket" "input_bucket" {
   name = "${var.project_id}-input"
   location = var.region
   force_destroy=true
+  cors {
+    origin          = ["http://201.206.66.59:5000"]
+    method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
+    response_header = ["*"]
+  }
 }

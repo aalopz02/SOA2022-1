@@ -1,19 +1,20 @@
 from __future__ import print_function
-from nturl2path import url2pathname
 from google.cloud import vision
 
 import platform
-import subprocess 
+import subprocess
 
-import sys
 import os
+
+import requests
 
 uri_base = ('eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
 pic = ('face_surprise.jpg')
 keyPath = '/home/aalopz/sharedFolder/key.json'
-os.environ['GOOGLE_APPLICATION_CREDENTIALS']=keyPath
+
 
 def ping(host):
+    '''Test for connection to test bucket'''
     param = '-n' if platform.system().lower()=='windows' else '-c'
     command = ['ping', param, '1', host]
     returnObj = subprocess.call(command, stdout=open(os.devnull, 'wb'))
@@ -21,8 +22,10 @@ def ping(host):
 
 class interface():
     def setImg(self):
+        '''Interface to set the img resource'''
         pass
     def doDetect(self,ulr=0):
+        '''Call vision api'''
         pass
     
 def getImpl(mode):
@@ -33,6 +36,7 @@ def getImpl(mode):
             def doDetect(self,ulr=0):
                 testImgs = ('angerTest.jpg','happyTest.jpg')
                 client = vision.ImageAnnotatorClient()
+                os.environ['GOOGLE_APPLICATION_CREDENTIALS']=keyPath
                 image = vision.Image()
                 resultsTotal = []
                 for testImg in testImgs:
@@ -62,6 +66,12 @@ def getImpl(mode):
                     results["surprise"] = vision.Likelihood(face.surprise_likelihood).name
                     results["sorrow"] = vision.Likelihood(face.sorrow_likelihood).name
                 print(results)
+                url = "http://201.206.66.59:5000/listener?"
+                url += "joy="+results["joy"]
+                url += "&sorrow="+results["sorrow"]
+                url += "&anger="+results["anger"]
+                url += "&surprise="+results["surprise"]
+                requests.post(url)
         return realImpl()
 
 def execute(mode = 'r',ulr = 0):    

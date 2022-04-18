@@ -11,7 +11,7 @@ import requests
 uri_base = ('eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
 pic = ('face_surprise.jpg')
 keyPath = '/home/aalopz/sharedFolder/key.json'
-os.environ['GOOGLE_APPLICATION_CREDENTIALS']=keyPath
+
 
 def ping(host):
     '''Test for connection to test bucket'''
@@ -36,6 +36,7 @@ def getImpl(mode):
             def doDetect(self,ulr=0):
                 testImgs = ('angerTest.jpg','happyTest.jpg')
                 client = vision.ImageAnnotatorClient()
+                os.environ['GOOGLE_APPLICATION_CREDENTIALS']=keyPath
                 image = vision.Image()
                 resultsTotal = []
                 for testImg in testImgs:

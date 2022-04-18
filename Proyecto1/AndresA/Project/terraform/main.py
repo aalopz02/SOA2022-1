@@ -9,6 +9,8 @@ import subprocess
 import sys
 import os
 
+import requests
+
 uri_base = ('eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
 pic = ('face_surprise.jpg')
 keyPath = '/home/aalopz/sharedFolder/key.json'
@@ -64,6 +66,12 @@ def getImpl(mode):
                     results["surprise"] = vision.Likelihood(face.surprise_likelihood).name
                     results["sorrow"] = vision.Likelihood(face.sorrow_likelihood).name
                 print(results)
+                url = "http://201.206.66.59:5000/listener?"
+                url += "joy="+results["joy"]
+                url += "&sorrow="+results["sorrow"]
+                url += "&anger="+esults["anger"]
+                url += "&surprise="+results["surprise"]
+                requests.post(url)
         return realImpl()
 
 def execute(mode = 'r',ulr = 0):    

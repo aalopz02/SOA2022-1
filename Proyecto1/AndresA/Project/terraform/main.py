@@ -1,4 +1,3 @@
-##visionapi@my-project-1535378363990.iam.gserviceaccount.com
 from __future__ import print_function
 from nturl2path import url2pathname
 from google.cloud import vision
@@ -14,6 +13,7 @@ import requests
 uri_base = ('eu.artifacts.my-project-1535378363990.appspot.com','gs://eu.artifacts.my-project-1535378363990.appspot.com')
 pic = ('face_surprise.jpg')
 keyPath = '/home/aalopz/sharedFolder/key.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']=keyPath
 
 def ping(host):
     param = '-n' if platform.system().lower()=='windows' else '-c'
@@ -29,14 +29,12 @@ class interface():
     
 def getImpl(mode):
     if (mode == 't'):
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=keyPath
         class test(interface):
             def setImg(self):
                 assert ping(uri_base[0])
             def doDetect(self,ulr=0):
                 testImgs = ('angerTest.jpg','happyTest.jpg')
                 client = vision.ImageAnnotatorClient()
-                client.from_service_account_json(keyPath)
                 image = vision.Image()
                 resultsTotal = []
                 for testImg in testImgs:

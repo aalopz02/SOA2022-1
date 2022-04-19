@@ -21,7 +21,12 @@ def listener():
     sorrow = request.args['sorrow']
     anger = request.args['anger']
     surprise = request.args['surprise']
-    print(joy,sorrow,anger,surprise)
+    print("---------Results---------")
+    print("Felicidad: ",joy)
+    print("Tristesa: ",sorrow)
+    print("Enojo: ",anger)
+    print("Sorpresa: ",surprise)
+    print("-----------End-----------")
     return "ok"
 
 def runServer():

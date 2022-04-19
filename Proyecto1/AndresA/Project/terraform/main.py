@@ -55,6 +55,7 @@ def getImpl(mode):
     else:
         class realImpl(interface):
             def doDetect(self,url=0):
+                print("alo")
                 client = vision.ImageAnnotatorClient()
                 image = vision.Image()
                 image.source.image_uri= url
